@@ -1,0 +1,70 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>QUIZ</title>
+    <link rel="stylesheet" href='{% static "quiz/css/base.css" %}'/>
+    <script
+  src="http://code.jquery.com/jquery-1.9.1.js"
+  integrity="sha256-e9gNBsAcA0DBuRWbm0oZfbiCyhjLrI6bmqAl5o+ZjUA="
+  crossorigin="anonymous"></script>
+    <style>
+        .computer-answer:after {
+		    content: "";
+		    width: 70px;
+		    height: 70px;
+		    background: url('{% static "quiz/icons/laptop.png" %}');
+            /*
+            http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/3d-glossy-blue-orbs-icons-business/075727-3d-glossy-blue-orb-icon-business-computer-laptop2.png
+            */
+		    background-size: cover;
+		    top: 5px;
+		    right: -90px;
+		    position: absolute;
+		    display: inline-block;
+		}
+
+		.human-answer:before {
+		    content: "";
+		    width: 70px;
+		    height: 70px;
+		    background: url('{% static "quiz/icons/human.png" %}');
+            /*
+            https://maxcdn.icons8.com/Share/icon/Cinema//human_head1600.png
+            */
+		    background-size: cover;
+		    top: 5px;
+		    left: -90px;
+		    position: absolute;
+		    display: inline-block;
+		}
+    </style>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="score">
+            <div id="user-score-left">{{ user_score }}</div>
+			<div id="user-score"></div>
+			<div id="computer-score"></div>
+            <div id="computer-score-right">{{ computer_score }}</div>
+		</div>
+		<div id="quiz">
+			<h3 id="quiz-title">{{ question.question_text }}</h3>
+			{% for answer in answers %}
+				<div class="answer" id="{{ answer.pk }}">
+					<div class="answer-text">
+						{{ answer.answer_text }}
+					</div>
+				</div>
+			{% endfor %}
+			<button id="next" disabled>Next=></button>
+		</div>
+    </div>
+    <script>
+		let handleAnswerUrl = "{% url 'quiz:handle_answer' %}";
+        let questionUrl = "{% url 'quiz:next_question' %}"
+    </script>
+    <script src="{% static "quiz/js/main.js" %}"></script>
+</body>
+</html>

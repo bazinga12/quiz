@@ -1,0 +1,85 @@
+#quiz{
+    margin: 0 100px;
+    width: 300px;
+    box-sizing: border-box;
+}
+#quiz-title{
+
+}
+.answer {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-bottom: 10px;
+    height: 80px;
+    position: relative;
+    color: blue;
+    border: 3px solid navy;
+    background-color: lightgrey;
+    cursor: pointer;
+}
+
+.answer-text{
+    padding: 15px;
+    position: relative;
+    text-align: center;
+    background-color: #ffffff;
+    top: 12px;
+    font-size: 1.2em;
+    margin: auto;
+    width: 200px;
+}
+
+.correct-answer{
+    background-color: lawngreen;
+}
+
+.incorrect-user-answer{
+    background-color: red;
+}
+
+#next{
+    margin-top: 10px;
+    width: 120px;
+    height: 60px;
+    float: right;
+    cursor: pointer;
+}
+
+#score {
+    height: 70px;
+    margin-left: 100px;
+    position: relative;
+}
+
+#user-score {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    background: url('https://maxcdn.icons8.com/Share/icon/Cinema//human_head1600.png');
+    background-size: cover;
+    float: left;
+}
+
+#user-score-left{
+    font-size: 30px;
+    font-family: arial, helvetica, sans-serif;
+    position: relative;
+    top: 20px;
+    float: left;
+}
+
+#computer-score{
+    width: 70px;
+    height: 70px;
+    position: relative;
+    background: url('http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/3d-glossy-blue-orbs-icons-business/075727-3d-glossy-blue-orb-icon-business-computer-laptop2.png');
+    background-size: cover;
+    float: left;
+}
+
+#computer-score-right{
+    font-size: 30px;
+    font-family: arial, helvetica, sans-serif;
+    position: relative;
+    top: 20px;
+    float: left;
+}
