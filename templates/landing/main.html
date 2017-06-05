@@ -6,12 +6,24 @@
     <title>Landing page</title>
     <link rel="stylesheet" href="{% static 'authentication/css/foundation.css' %}"/>
     <link rel="stylesheet" href="{% static 'authentication/css/base.css' %}"/>
+    <style>
+        body{
+            background: url('{% static "authentication/background.jpg" %}');
+		    background-size: cover;
+        }
+    </style>
 </head>
 <script
   src="http://code.jquery.com/jquery-1.9.1.js"
   integrity="sha256-e9gNBsAcA0DBuRWbm0oZfbiCyhjLrI6bmqAl5o+ZjUA="
   crossorigin="anonymous"></script>
 <body>
+    <div id="entry">
+        <div id="entry-tagline">Play and study</div>
+        <div id="entry-description">It will be better soon</div>
+        <a href="{% url 'quiz:start' %}"><button class="button">Play without signing up</button></a>
+    </div>
+
     <div id="auth">
 
     {% if not username %}
