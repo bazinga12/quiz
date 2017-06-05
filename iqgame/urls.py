@@ -15,9 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.shortcuts import render
+
+from .views import start_view
+
+
+def render_landing_page(request):
+    return render(request, 'landing/main.html', {})
 
 urlpatterns = [
-    url(r'^quiz/', include('quiz.urls')),
+
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('quiz.urls')),
+    url(r'^authentication/', include('authentication.urls')),
+    url(r'^quiz/', include('quiz.urls')),
+    url(r'^$', start_view, name='landing'),
 ]

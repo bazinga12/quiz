@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Landing page</title>
+    <link rel="stylesheet" href="{% static 'authentication/css/foundation.css' %}"/>
+    <link rel="stylesheet" href="{% static 'authentication/css/base.css' %}"/>
+</head>
+<script
+  src="http://code.jquery.com/jquery-1.9.1.js"
+  integrity="sha256-e9gNBsAcA0DBuRWbm0oZfbiCyhjLrI6bmqAl5o+ZjUA="
+  crossorigin="anonymous"></script>
+<body>
+    <div id="auth">
+
+    {% if not username %}
+        <button id="show-registration-form" class="label round secondary">Registration</button>
+        <button id="show-login-form" class="label round secondary">Login</button>
+        <div id="auth-form">
+            <div id="login" class="small-offset-2 small-8 columns">
+                <form action='{% url "authentication:login" %}' method="post">
+                    {% csrf_token %}
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password">
+                    {% if login_error %}
+                        <label class="error">{{ login_error }}</label>
+                    {% endif %}
+                    <input class="button" type="submit" value="Sign IN">
+                </form>
+            </div>
+            <div id="register" class="small-offset-2 small-8 columns">
+                <form action="{% url 'authentication:register' %}" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input class="button" type="submit" value="Sign UP">
+                </form>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if username %}
+        <a href="{% url 'authentication:logout' %}"><button id="logout" class="label round secondary">Logout</button></a>
+        <a href="{% url 'quiz:start' %}"><div id=start>Start game!</div></a>
+    {% endif %}
+
+    </div>
+
+    <script src="{% static 'authentication/js/index.js' %}"></script>
+</body>
+</html>

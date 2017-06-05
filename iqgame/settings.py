@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'authentication',
     'quiz'
 ]
 
@@ -67,6 +68,8 @@ DATABASES = {
     }
 }
 
+# #Extended user model
+AUTH_USER_MODEL = 'authentication.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -100,18 +103,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
-    'quiz',
-)
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
-                 'quiz'],
-        #'APP_DIRS': True,
+                 'quiz',
+                 'authentication'],
+        'APP_DIRS': True,
         'OPTIONS': {
             'debug': DEBUG,
             'context_processors': [
@@ -120,10 +118,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'loaders': [
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader'
-            ]
         },
 
     },

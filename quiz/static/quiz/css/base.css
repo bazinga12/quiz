@@ -44,6 +44,14 @@
     cursor: pointer;
 }
 
+#new-game{
+    margin-top: 10px;
+    width: 120px;
+    height: 60px;
+    float: left;
+    cursor: pointer;
+}
+
 #score {
     height: 70px;
     margin-left: 100px;

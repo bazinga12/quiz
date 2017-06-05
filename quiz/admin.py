@@ -5,7 +5,7 @@ from django.contrib import admin
 from .models import Question, Answer
 
 
-class ChoiceInline(admin.TabularInline):
+class AnswerInline(admin.TabularInline):
     model = Answer
     extra = 0
 
@@ -15,6 +15,6 @@ class QuestionAdmin(admin.ModelAdmin):
         (None, {'fields': ['question_text']}),
         ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
     ]
-    inlines = [ChoiceInline]
+    inlines = [AnswerInline]
 
 admin.site.register(Question, QuestionAdmin)

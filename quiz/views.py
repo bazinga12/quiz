@@ -3,14 +3,15 @@
 from random import Random
 import json
 
-from django.core.serializers import serialize
-from django.http import JsonResponse
+#from django.core.serializers import serialize
+from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
 
 from .models import Question
 
-# Create your views here.
+
 DIFFICULTY = 50
 
 
@@ -72,6 +73,8 @@ def render_next_question(request):
     numbers = request.session.get('non_seen')
     if len(numbers) == 0:
         numbers = {question.pk for question in Question.objects.all()}
+
+    question_number_to_render = None
     while True:
         question_number_to_render = Random().sample(numbers, 1)[0]
         if not Question.objects.filter(pk=question_number_to_render).exists():
@@ -90,6 +93,10 @@ def render_next_question(request):
     context['answers'] = context['question'].answer_set.all().order_by('?')
 
     return render(request, 'quiz/index.html', context)
+
+
+def start_new_game(request):
+    return HttpResponseRedirect(reverse('quiz:start'))
 
 
 def is_computer_correct(difficulty):

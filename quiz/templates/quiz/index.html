@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>QUIZ</title>
-    <link rel="stylesheet" href='{% static "quiz/css/base.css" %}'/>
+    <link rel="stylesheet" href='{% static "quiz/css/base.css" %}?v=00004'/>
     <script
   src="http://code.jquery.com/jquery-1.9.1.js"
   integrity="sha256-e9gNBsAcA0DBuRWbm0oZfbiCyhjLrI6bmqAl5o+ZjUA="
@@ -15,9 +15,6 @@
 		    width: 70px;
 		    height: 70px;
 		    background: url('{% static "quiz/icons/laptop.png" %}');
-            /*
-            http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/3d-glossy-blue-orbs-icons-business/075727-3d-glossy-blue-orb-icon-business-computer-laptop2.png
-            */
 		    background-size: cover;
 		    top: 5px;
 		    right: -90px;
@@ -30,9 +27,6 @@
 		    width: 70px;
 		    height: 70px;
 		    background: url('{% static "quiz/icons/human.png" %}');
-            /*
-            https://maxcdn.icons8.com/Share/icon/Cinema//human_head1600.png
-            */
 		    background-size: cover;
 		    top: 5px;
 		    left: -90px;
@@ -59,6 +53,7 @@
 				</div>
 			{% endfor %}
 			<button id="next" disabled>Next=></button>
+            <a href="{% url 'quiz:new_game' %}"><button id="new-game">New Game</button></a>
 		</div>
     </div>
     <script>

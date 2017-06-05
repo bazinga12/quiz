@@ -1,0 +1,39 @@
+#register {
+    display: none;
+}
+
+#auth {
+    width: 400px;
+    height: 500px;
+    float: right;
+}
+
+#auth-form{
+    margin-top: 20px;
+}
+
+#login, #register{
+    float: left;
+}
+
+#show-registration-form, #show-login-form, #logout {
+    border-radius: 10px;
+    width: 190px;
+    cursor: pointer;
+}
+
+#logout{
+    margin-top: 30px;
+    margin-left: 105px;
+}
+
+
+#start {
+    width: 250px;
+    height: 150px;
+    background-color: lightblue;
+    color: midnightblue;
+    margin: 100px auto;
+    text-align: center;
+    line-height: 150px;
+}
