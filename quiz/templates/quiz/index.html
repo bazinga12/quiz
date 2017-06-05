@@ -4,7 +4,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>QUIZ</title>
-    <link rel="stylesheet" href='{% static "quiz/css/base.css" %}?v=00004'/>
+
+    <link rel="stylesheet" href='{% static "quiz/css/base.css" %}?v=000113'/>
     <script
   src="http://code.jquery.com/jquery-1.9.1.js"
   integrity="sha256-e9gNBsAcA0DBuRWbm0oZfbiCyhjLrI6bmqAl5o+ZjUA="
@@ -43,6 +44,14 @@
 			<div id="computer-score"></div>
             <div id="computer-score-right">{{ computer_score }}</div>
 		</div>
+
+		<div id="difficulty" class="mobile-app-toggle" data-mobile-app-toggle>
+			<p>Choose difficulty level:</p>
+			<button class="button is-active">Easy</button>
+			<button class="button">Medium</button>
+			<button class="button">Hard</button>
+		</div>
+
 		<div id="quiz">
 			<h3 id="quiz-title">{{ question.question_text }}</h3>
 			{% for answer in answers %}

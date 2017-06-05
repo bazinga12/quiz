@@ -15,13 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.shortcuts import render
 
-from .views import start_view
+# from .views import start_view
+from authentication.views import start_view
 
-
-def render_landing_page(request):
-    return render(request, 'landing/main.html', {})
 
 urlpatterns = [
 

@@ -11,7 +11,6 @@ from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
 
 from .models import Question
 
-
 DIFFICULTY = 50
 
 
@@ -55,7 +54,9 @@ def handle_user_answer(request):
         else:
             response['is_user_correct'] = False
 
-        if is_computer_correct(DIFFICULTY):
+        difficulty = received_data.get('level')
+        print(difficulty)
+        if is_computer_correct(difficulty):
             response['computer_answer'] = correct_answer_pk
             response['is_computer_correct'] = True
             request.session['computer_score'] += 1

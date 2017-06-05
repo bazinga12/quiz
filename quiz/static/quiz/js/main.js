@@ -3,19 +3,19 @@ let main = function(){
 
 	//This function gets cookie with a given name
 	function getCookie(name) {
-	 var cookieValue = null;
-	 if (document.cookie && document.cookie != '') {
-		 var cookies = document.cookie.split(';');
-		 for (var i = 0; i < cookies.length; i++) {
-			 var cookie = jQuery.trim(cookies[i]);
-			 // Does this cookie string begin with the name we want?
-			 if (cookie.substring(0, name.length + 1) == (name + '=')) {
+		var cookieValue = null;
+		if (document.cookie && document.cookie != '') {
+			var cookies = document.cookie.split(';');
+			for (var i = 0; i < cookies.length; i++) {
+				var cookie = jQuery.trim(cookies[i]);
+				// Does this cookie string begin with the name we want?
+				if (cookie.substring(0, name.length + 1) == (name + '=')) {
 				 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-			 break;
-		 }
-	 }
-	 }
-	 return cookieValue;
+				 break;
+				}
+			}
+		}
+		return cookieValue;
 	}
 	var csrftoken = getCookie('csrftoken');
 
@@ -38,6 +38,30 @@ let main = function(){
 	 }
 	});
 
+	let level = 50;
+	let diff = document.getElementById('difficulty');
+	diff.onclick = function(event){
+		var target = event.target;
+		while (target != this) {
+			if (target.tagName == 'BUTTON') {
+				let content = target.textContent;
+				switch (content){
+					case 'Easy':
+						level = 50;
+						break;
+					case 'Medium':
+						level = 70;
+						break;
+					case 'Hard':
+						level = 90;
+						break;
+				}
+				return;
+			}
+			target = target.parentNode;
+		}
+	};
+
 	let answered = false;
 	let quiz = document.getElementById('quiz');
 	console.log(quiz);
@@ -51,7 +75,7 @@ let main = function(){
 					sendAnswer(target);
 					return;
 				}
-			target = target.parentNode;
+				target = target.parentNode;
 			}
 		}
 	};
@@ -61,7 +85,7 @@ let main = function(){
 		let request = $.ajax({
 			type: "POST",
 			url: handleAnswerUrl,
-			data: JSON.stringify({answer: elem.id})
+			data: JSON.stringify({answer: elem.id, level})
 		});
 		request.done(function(data){
 			handleCorrectAnswer(data);
@@ -109,6 +133,13 @@ let main = function(){
 	function getNextQuestion(jsonQuestion){
 		window.location = questionUrl;
 	}
+
+	$('[data-mobile-app-toggle] .button').click(function () {
+		$(this).siblings().removeClass('is-active');
+		$(this).addClass('is-active');
+	});
+
+
 }();
 
 

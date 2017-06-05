@@ -7,6 +7,16 @@ from .forms import CustomUserCreationForm
 from django.urls import reverse
 
 
+def start_view(request):
+    context = dict()
+    error_message = request.session.get('login_error')
+    if error_message:
+        context['login_error'] = error_message
+    context['username'] = auth.get_user(request).username
+    context['form'] = CustomUserCreationForm()
+    return render(request, 'authentication/main.html', context)
+
+
 def login(request):
     if request.POST:
         username = request.POST.get('username', '')
