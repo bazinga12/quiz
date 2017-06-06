@@ -55,7 +55,7 @@ let main = function(){
 						localStorage.setItem('level', 90);
 						break;
 				}
-				changeDifficultyScreen(target.textContent);
+				changeDifficultyScreen(localStorage.getItem('level'));
 				return;
 			}
 			target = target.parentNode;
@@ -63,8 +63,13 @@ let main = function(){
 	};
 
 	function changeDifficultyScreen(difficulty){
+		const difficulties = {
+			50: 'Easy',
+			70: 'Medium',
+			90: 'Hard'
+		};
 		if(localStorage.getItem('level')){
-			document.getElementById('dif-tooltip').textContent = `Level: ${difficulty}`;
+			document.getElementById('dif-tooltip').textContent = `Level: ${difficulties[difficulty]}`;
 			document.getElementById('b-2').style.display = 'none';
 			document.getElementById('b-3').style.display = 'none';
 			document.getElementById('b-1').style.display = 'none';
@@ -72,6 +77,17 @@ let main = function(){
 			document.getElementById('difficulty').style.width = '100px';
 		}
 	}
+	changeDifficultyScreen(localStorage.getItem('level'));
+
+	document.getElementById('b-change').onclick = function(){
+		document.getElementById('dif-tooltip').textContent = 'Choose difficulty level:';
+		document.getElementById('b-2').style.display = 'inline';
+		document.getElementById('b-3').style.display = 'inline';
+		document.getElementById('b-1').style.display = 'inline';
+		document.getElementById('b-change').style.display = 'none';
+		document.getElementById('difficulty').style.width = '159px';
+	};
+
 
 	let answered = false;
 	let quiz = document.getElementById('quiz');
