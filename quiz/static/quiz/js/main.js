@@ -38,7 +38,6 @@ let main = function(){
 	 }
 	});
 
-	let level = 50;
 	let diff = document.getElementById('difficulty');
 	diff.onclick = function(event){
 		var target = event.target;
@@ -47,20 +46,32 @@ let main = function(){
 				let content = target.textContent;
 				switch (content){
 					case 'Easy':
-						level = 50;
+						localStorage.setItem('level', 50);
 						break;
 					case 'Medium':
-						level = 70;
+						localStorage.setItem('level', 70);
 						break;
 					case 'Hard':
-						level = 90;
+						localStorage.setItem('level', 90);
 						break;
 				}
+				changeDifficultyScreen(target.textContent);
 				return;
 			}
 			target = target.parentNode;
 		}
 	};
+
+	function changeDifficultyScreen(difficulty){
+		if(localStorage.getItem('level')){
+			document.getElementById('dif-tooltip').textContent = `Level: ${difficulty}`;
+			document.getElementById('b-2').style.display = 'none';
+			document.getElementById('b-3').style.display = 'none';
+			document.getElementById('b-1').style.display = 'none';
+			document.getElementById('b-change').style.display = 'block';
+			document.getElementById('difficulty').style.width = '100px';
+		}
+	}
 
 	let answered = false;
 	let quiz = document.getElementById('quiz');
@@ -85,7 +96,7 @@ let main = function(){
 		let request = $.ajax({
 			type: "POST",
 			url: handleAnswerUrl,
-			data: JSON.stringify({answer: elem.id, level})
+			data: JSON.stringify({answer: elem.id, level: parseInt(localStorage.getItem('level'))})
 		});
 		request.done(function(data){
 			handleCorrectAnswer(data);

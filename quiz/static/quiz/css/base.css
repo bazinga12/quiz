@@ -108,6 +108,12 @@
     width: 159px;
 }
 
+#b-change{
+    display: none;
+    background-color: blue;
+    color: white;
+    text-align: center;
+}
 
 .mobile-app-toggle {
   display: -webkit-flex;
