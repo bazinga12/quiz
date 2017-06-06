@@ -40,7 +40,6 @@ def register(request):
     if request.POST:
         new_user_form = CustomUserCreationForm(request.POST)
         context['form'] = new_user_form
-        print(new_user_form)
         if new_user_form.is_valid():
             user = new_user_form.save()
             print(user)
@@ -50,4 +49,4 @@ def register(request):
             return HttpResponseRedirect(reverse('landing'))
         else:
             context['form'] = new_user_form
-    return render(request, 'landing/main.html', context)
+    return render(request, 'authentication/main.html', context)

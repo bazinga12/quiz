@@ -40,9 +40,9 @@ let main = function(){
 
 	let diff = document.getElementById('difficulty');
 	diff.onclick = function(event){
-		var target = event.target;
-		while (target != this) {
-			if (target.tagName == 'BUTTON') {
+		let target = event.target;
+		while (target !== this) {
+			if (target.tagName === 'BUTTON') {
 				let content = target.textContent;
 				switch (content){
 					case 'Easy':
